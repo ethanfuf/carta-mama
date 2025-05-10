@@ -4,9 +4,7 @@
   <meta charset="UTF-8">
   <title>Carta para Mamá</title>
   <style>
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
     body {
       margin: 0;
       background: #fff0f5;
@@ -17,7 +15,6 @@
       font-family: 'Arial', sans-serif;
       overflow: hidden;
     }
-
     .sobre {
       position: relative;
       width: 300px;
@@ -28,7 +25,6 @@
       box-shadow: 0 0 20px rgba(0,0,0,0.2);
       cursor: pointer;
     }
-
     .solapa {
       position: absolute;
       top: 0;
@@ -41,11 +37,9 @@
       transition: transform 1s ease;
       z-index: 2;
     }
-
     .sobre.abierto .solapa {
       transform: rotateX(-180deg);
     }
-
     .carta {
       position: absolute;
       top: 10%;
@@ -60,22 +54,18 @@
       transition: transform 1s ease 0.5s;
       z-index: 1;
     }
-
     .sobre.abierto .carta {
       transform: translateY(0);
     }
-
     .corazon {
       font-size: 3em;
       color: #f33;
       margin-bottom: 10px;
     }
-
     .mensaje {
       font-size: 1.1em;
       color: #444;
     }
-
     .corazon-float {
       position: absolute;
       font-size: 1.5em;
@@ -83,16 +73,9 @@
       animation: flotar 3s linear forwards;
       pointer-events: none;
     }
-
     @keyframes flotar {
-      0% {
-        transform: translateY(0) scale(1);
-        opacity: 1;
-      }
-      100% {
-        transform: translateY(-300px) scale(1.5);
-        opacity: 0;
-      }
+      0% { transform: translateY(0) scale(1); opacity: 1; }
+      100% { transform: translateY(-300px) scale(1.5); opacity: 0; }
     }
   </style>
 </head>
@@ -113,7 +96,6 @@
     function abrirSobre(sobre) {
       sobre.classList.toggle('abierto');
       if (sobre.classList.contains('abierto')) {
-        // Generar corazones flotando
         for (let i = 0; i < 20; i++) {
           const heart = document.createElement('div');
           heart.className = 'corazon-float';
@@ -122,8 +104,6 @@
           heart.style.bottom = '0px';
           heart.style.fontSize = `${Math.random() * 10 + 15}px`;
           document.body.appendChild(heart);
-
-          // Eliminar después de animar
           setTimeout(() => heart.remove(), 3000);
         }
       }
