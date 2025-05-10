@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Carta para Mamá</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      background: #fff0f5;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      font-family: 'Arial', sans-serif;
+      overflow: hidden;
+    }
+
+    .sobre {
+      position: relative;
+      width: 300px;
+      height: 200px;
+      background: #ffc0cb;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 0 20px rgba(0,0,0,0.2);
+      cursor: pointer;
+    }
+
+    .solapa {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: #ff69b4;
+      clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+      transform-origin: top;
+      transition: transform 1s ease;
+      z-index: 2;
+    }
+
+    .sobre.abierto .solapa {
+      transform: rotateX(-180deg);
+    }
+
+    .carta {
+      position: absolute;
+      top: 10%;
+      left: 10%;
+      width: 80%;
+      height: 80%;
+      background: white;
+      border-radius: 5px;
+      padding: 20px;
+      text-align: center;
+      transform: translateY(100%);
+      transition: transform 1s ease 0.5s;
+      z-index: 1;
+    }
+
+    .sobre.abierto .carta {
+      transform: translateY(0);
+    }
+
+    .corazon {
+      font-size: 3em;
+      color: #f33;
+      margin-bottom: 10px;
+    }
+
+    .mensaje {
+      font-size: 1.1em;
+      color: #444;
+    }
+
+    .corazon-float {
+      position: absolute;
+      font-size: 1.5em;
+      color: red;
+      animation: flotar 3s linear forwards;
+      pointer-events: none;
+    }
+
+    @keyframes flotar {
+      0% {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-300px) scale(1.5);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="sobre" onclick="abrirSobre(this)">
+    <div class="solapa"></div>
+    <div class="carta">
+      <div class="corazon">❤️</div>
+      <div class="mensaje">
+        Te amo, mami.<br>
+        ¡Feliz Día de las Madres!
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function abrirSobre(sobre) {
+      sobre.classList.toggle('abierto');
+      if (sobre.classList.contains('abierto')) {
+        // Generar corazones flotando
+        for (let i = 0; i < 20; i++) {
+          const heart = document.createElement('div');
+          heart.className = 'corazon-float';
+          heart.textContent = '❤️';
+          heart.style.left = `${Math.random() * 100}%`;
+          heart.style.bottom = '0px';
+          heart.style.fontSize = `${Math.random() * 10 + 15}px`;
+          document.body.appendChild(heart);
+
+          // Eliminar después de animar
+          setTimeout(() => heart.remove(), 3000);
+        }
+      }
+    }
+  </script>
+
+</body>
+</html>
